@@ -28,7 +28,6 @@ class AlarmRespository (context: Context) {
                 emitter.onError(ex)
             }
         },BackpressureStrategy.BUFFER).subscribeOn(Schedulers.io())
-//        return alarmDao.getAllList()
     }
     fun insertAlarm(alarm : Alarm){
         alarmDao.insert(alarm)

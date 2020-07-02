@@ -15,7 +15,7 @@ abstract class AlarmDatabase : RoomDatabase(){
                 synchronized(AlarmDatabase::class.java){
                     instance = Room.databaseBuilder(context,
                         AlarmDatabase::class.java,
-                    "alarmbbc.db").fallbackToDestructiveMigration().allowMainThreadQueries().build()
+                    "alarmbbd.db").fallbackToDestructiveMigration().allowMainThreadQueries().build()
                 }
             return instance!!
         }

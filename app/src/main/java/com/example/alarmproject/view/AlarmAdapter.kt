@@ -49,6 +49,7 @@ class AlarmAdapter(context : Context,private val alarmListener: AlarmListener) :
         private val listCheckbox = arrayListOf<CheckBox>(cb2,cb3,cb4,cb5,cb6,cb7,cb8)
 
         fun bind(alarm : Alarm){
+            Log.d("AppLog",alarm.toString())
             val listSum = ArrayList<String>()
             val listS = StringTokenizer(alarm.listTime,",")
             while(listS.hasMoreTokens()){
@@ -105,9 +106,9 @@ class AlarmAdapter(context : Context,private val alarmListener: AlarmListener) :
     }
 
     override fun onBindViewHolder(holder: AlarmAdapter.AlarmViewHolder, position: Int) {
-        if(currentList.size > 0) {
+
             holder.bind(getItem(position))
-        }
+
     }
 
 }

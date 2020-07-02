@@ -59,17 +59,20 @@ class MainActivity : AppCompatActivity(), AlarmAdapter.AlarmListener{
     }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun doAfterClick(a : Int, b : Int){
-        val alarm = Alarm(id = viewModel.listAlarm.value!!.size, time = "${a}:${b}",content = "Alarm $a $b" ,
+        val alarm = Alarm(id = viewModel.listAlarm.value!!.size+1, time = "${a}:${b}",content = "Alarm $a $b" ,
             isActive = true,listTime = "1,1,1,1,1,1,1")
+        Log.d("AppLog",alarm.toString())
         viewModel.addItem(alarm)
         alarmUtils.create(this,alarm)
     }
     private fun updateTime(a : Int, b : Int, alarm: Alarm){
         alarm.time = "${a}:${b}"
         viewModel.updateItem(alarm)
+        adapter.notifyDataSetChanged()
     }
     private fun updateList(alarm: Alarm){
         viewModel.updateItem(alarm)
+        adapter.notifyDataSetChanged()
     }
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onClickTime(alarm : Alarm) {

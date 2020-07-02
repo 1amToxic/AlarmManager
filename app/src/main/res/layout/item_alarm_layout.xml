@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="#202124"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/text_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="04:00"
+        android:textColor="#989ea3"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/time_repeat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Every day "
+        android:textColor="#989ea3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_time" />
+
+    <TextView
+        android:id="@+id/alarm_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text=" Content"
+        android:textColor="#989ea3"
+        app:layout_constraintStart_toEndOf="@id/time_repeat"
+        app:layout_constraintTop_toBottomOf="@id/text_time" />
+
+    <Switch
+        android:id="@+id/switchActive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/SCBSwitch"
+        app:layout_constraintBottom_toTopOf="@id/time_repeat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_time" />
+    <FrameLayout
+        android:padding="10dp"
+        android:id="@+id/layout_expand"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/time_repeat"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <LinearLayout
+            android:weightSum="7"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/cb2"
+                android:checked="true"
+                android:layout_weight="1"
+                android:shadowColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:text="M"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <CheckBox
+                android:id="@+id/cb3"
+                android:checked="true"
+                android:layout_weight="1"
+                android:shadowColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:text="T"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <CheckBox
+                android:id="@+id/cb4"
+                android:checked="true"
+                android:layout_weight="1"
+                android:shadowColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:text="W"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <CheckBox
+                android:id="@+id/cb5"
+                android:checked="true"
+                android:layout_weight="1"
+                android:shadowColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:text="T"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <CheckBox
+                android:id="@+id/cb6"
+                android:checked="true"
+                android:layout_weight="1"
+                android:shadowColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:text="F"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <CheckBox
+                android:id="@+id/cb7"
+                android:checked="true"
+                android:layout_weight="1"
+                android:shadowColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:text="S"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <CheckBox
+                android:id="@+id/cb8"
+                android:checked="true"
+                android:layout_weight="1"
+                android:shadowColor="#FFFFFF"
+                android:textColorHighlight="#FFFFFF"
+                android:textColor="#FFFFFF"
+                android:text="S"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </FrameLayout>
+    <View
+        android:id="@+id/view_cross"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#989ea3"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

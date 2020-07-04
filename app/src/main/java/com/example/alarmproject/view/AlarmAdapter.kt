@@ -49,13 +49,11 @@ class AlarmAdapter(context : Context,private val alarmListener: AlarmListener) :
         private val listCheckbox = arrayListOf<CheckBox>(cb2,cb3,cb4,cb5,cb6,cb7,cb8)
 
         fun bind(alarm : Alarm){
-            Log.d("AppLog",alarm.toString())
             val listSum = ArrayList<String>()
             val listS = StringTokenizer(alarm.listTime,",")
             while(listS.hasMoreTokens()){
                 listSum.add(listS.nextToken())
             }
-            Log.d("AppLogcre",listSum.toString())
             listCheckbox.forEachIndexed(){
                 index,it ->
                 run {
@@ -87,7 +85,6 @@ class AlarmAdapter(context : Context,private val alarmListener: AlarmListener) :
                             }
                         }
                     }
-                    Log.d("AppLog",listSumz.toString())
                     alarmListener.onClickItem(listSumz,alarm)
                     layoutExpand.visibility = View.GONE
                 }

@@ -24,7 +24,8 @@ class MainActivity : AppCompatActivity(), AlarmAdapter.AlarmListener{
     private lateinit var fabAdd : FloatingActionButton
     private lateinit var adapter : AlarmAdapter
     private lateinit var frameTimePicker : FrameLayout
-    private val alarmUtils = AlarmUtils()
+
+    val alarmUtils = AlarmUtils()
     private val viewModel : AlarmViewModel by viewModels (factoryProducer = {
             AlarmViewModelFactory(
                 applicationContext
@@ -59,14 +60,36 @@ class MainActivity : AppCompatActivity(), AlarmAdapter.AlarmListener{
     }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun doAfterClick(a : Int, b : Int){
-        val alarm = Alarm(id = viewModel.listAlarm.value!!.size+1, time = "${a}:${b}",content = "Alarm $a $b" ,
+        var time : String = when {
+            (a<10).and(b<10) -> {
+                "0${a}:0${b}"
+            }
+            b<10 -> {
+                "${a}:0${b}"
+            }
+            a<10 -> {
+                "0${a}:${b}"
+            }
+            else -> {
+                "${a}:${b}"
+            }
+        }
+        val alarm = Alarm(id = viewModel.listAlarm.value!!.size+1, time = time,content = "Alarm $a $b" ,
             isActive = true,listTime = "1,1,1,1,1,1,1")
         Log.d("AppLog",alarm.toString())
         viewModel.addItem(alarm)
         alarmUtils.create(this,alarm)
     }
     private fun updateTime(a : Int, b : Int, alarm: Alarm){
-        alarm.time = "${a}:${b}"
+        if(a<10){
+            alarm.time = "0${a}:${b}"
+        }else if(b<10){
+            alarm.time = "${a}:0${b}"
+        }else if(a<10&&b<10){
+            alarm.time = "0${a}:0${b}"
+        }else{
+            alarm.time = "${a}:${b}"
+        }
         viewModel.updateItem(alarm)
         adapter.notifyDataSetChanged()
     }
@@ -88,9 +111,7 @@ class MainActivity : AppCompatActivity(), AlarmAdapter.AlarmListener{
             stringTime+= "$it,"
         }
         alarm.listTime = stringTime
-        Log.d("AppLog",listSum.toString())
         updateList(alarm)
-//        TransitionManager.beginDelayedTransition(recyclerView)
     }
 
 }

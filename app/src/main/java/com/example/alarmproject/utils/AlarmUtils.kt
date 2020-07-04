@@ -25,11 +25,19 @@ class AlarmUtils {
         val pendingIntent =
             PendingIntent.getService(context,index,intent,PendingIntent.FLAG_UPDATE_CURRENT)
         val calendar = Calendar.getInstance()
-
+        Log.d("AppLog0",calendar.timeInMillis.toString())
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val time = LocalTime.parse(alarm.time)
+            Log.d("AppLog1",calendar.timeInMillis.toString())
+            val tmp = alarm.time+":00"
+            val time = LocalTime.parse(tmp)
             calendar.set(Calendar.HOUR_OF_DAY, time.hour)
             calendar.set(Calendar.MINUTE, time.minute)
+            calendar.set(Calendar.SECOND,0)
+            Log.d("AppLog2",calendar.timeInMillis.toString())
+            alarmManager
+                .setExact(AlarmManager.RTC_WAKEUP,
+                    calendar.timeInMillis
+                    , pendingIntent)
         }
         else{
             val st = StringTokenizer(alarm.time,":")
@@ -41,14 +49,11 @@ class AlarmUtils {
             calendar.set(Calendar.MINUTE,array[1])
             calendar.set(Calendar.SECOND,0)
             Log.d("AppLog1",calendar.time.toString())
+            alarmManager
+                .setExact(AlarmManager.RTC_WAKEUP,
+                    calendar.timeInMillis
+                    , pendingIntent)
         }
-        alarmManager
-            .setExact(AlarmManager.RTC_WAKEUP,
-                calendar.timeInMillis
-                , pendingIntent)
-        Log.d("AppLog","${calendar.time}")
-
-
 
     }
 }

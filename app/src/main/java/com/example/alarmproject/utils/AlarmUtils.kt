@@ -21,9 +21,10 @@ class AlarmUtils {
     fun create(context : Context, alarm : Alarm){
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(context,ScheduleService::class.java)
+        intent.action = "FOO_ACTION"
         intent.putExtra("content_notification","Alarm")
         val pendingIntent =
-            PendingIntent.getService(context,index,intent,PendingIntent.FLAG_UPDATE_CURRENT)
+            PendingIntent.getBroadcast(context,index,intent,PendingIntent.FLAG_UPDATE_CURRENT)
         val calendar = Calendar.getInstance()
         Log.d("AppLog0",calendar.timeInMillis.toString())
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
